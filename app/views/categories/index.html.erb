@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<table class="table">
+  <thead class="thead-dark text-center">
+    <tr class="">
+      <th scope="col">Categoria</th>
+      <th scope="col">N°Productos</th>
+      <th scope="col">Show</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Destroy</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <% @categories.each do |category| %>
+    <tr>
+      <td><h4><%= link_to category.name, category  %></h4></td>
+      <td><h4><%= category.products.count %></h4></td>
+      <td><%= link_to 'Show', category, class:"btn btn-info" %></td>
+      <td><%= link_to 'Edit', edit_category_path(category), class:"btn btn-success" %></td>
+       <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<br>
+<div class="text-center">
+  <%= link_to 'New Category', new_category_path, class:"btn btn-outline-primary btn-lg"  %>
+</div

@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    <h1> Categoria: <%= @category.name %> </h1>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><%= link_to 'Edit', edit_category_path(@category), class:"btn btn-outline-success" %> |
+    <%= link_to 'Back', categories_path, class:"btn btn-outline-dark" %></a>
+  </li>
+</ul>
+
+<br>
+
+
+
+<div class="row p-5">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body text-center">
+        <h2 class="p-2"> Crear Nuevo Producto </h2>
+        <%= form_with(model: [@category, @product], local: true) do |form| %>
+
+          <%= form.hidden_field :category_id, value: @category.id %>
+
+          <div class="field">
+            <%= form.label :name %>
+            <%= form.text_field :name, id: :product_name %>
+          </div>
+
+            <div class="field">
+            <%= form.label :price %>
+            <%= form.text_field :price, id: :price_name %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+
+    <div class="card">
+      <div class="card-body text-center">
+        <h2 class="p-2"> Productos de la categoria </h2>
+        <ul>
+        <% @category.products.each do |product| %>
+         <li>
+          <%= product.name %>
+          <%= product.price %>
+          <%= link_to "Borrar", category_product_path(@category, product), method: :delete, class:"btn btn-outline-danger btn-sm" %>
+         </li>
+        <% end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
